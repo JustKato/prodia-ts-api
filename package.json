@@ -1,0 +1,33 @@
+{
+  "name": "prodia-api",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -p tsconfig.build.json",
+    "compile": "tsc"
+  },
+  "keywords": [
+    "prodia",
+    "image generation",
+    "image generator",
+    "ai",
+    "stable diffusion"
+  ],
+  "author": {
+    "name": "Daniel Legt",
+    "email": "contact@danlegt.com",
+    "url": "https://danlegt.com/"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/preset-typescript": "^7.21.5",
+    "@types/jest": "^29.5.1",
+    "@types/node": "^20.1.3",
+    "jest": "^29.5.0",
+    "ts-jest": "^29.1.0",
+    "ts-node": "^10.9.1",
+    "typescript": "^5.0.4"
+  }
+}
