@@ -1,7 +1,7 @@
 # Prodia AI Image Generation API
 [![npm version](https://badge.fury.io/js/prodia-api.svg)](https://badge.fury.io/js/prodia-api)
 
-[![CI](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml/badge.svg)](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml)
+[![Tests](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml/badge.svg)](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml)
 
 This is a Node.js library written in TypeScript for usage with the [Prodia AI API](https://docs.prodia.com/reference/getting-started)
 
