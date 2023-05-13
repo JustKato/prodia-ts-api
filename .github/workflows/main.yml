@@ -1,12 +1,17 @@
 name: Tests
 on: 
   - push
+  - pull_request
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: main
     steps:
       - uses: actions/checkout@v2
+      - name: Test using Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '18'
       - name: Install Modules
         run: npm i
       - name: Run Tests
