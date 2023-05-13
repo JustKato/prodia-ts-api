@@ -14,7 +14,7 @@ jobs:
           node-version: '18'
       - name: Install Modules
         run: npm i
-      - name: test if key is mentioned
-        run: echo $PRODIA_KEY
       - name: Run Tests
         run: npm run test
+        env:
+          PRODIA_KEY: ${{ secrets.PRODIA_KEY }}
