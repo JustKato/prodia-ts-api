@@ -4,6 +4,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    environment: main
     steps:
       - uses: actions/checkout@v2
       - name: Install Modules
