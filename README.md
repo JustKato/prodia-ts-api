@@ -1,4 +1,7 @@
 # Prodia AI Image Generation API
+[![npm version](https://badge.fury.io/js/prodia-api.svg)](https://badge.fury.io/js/prodia-api)
+
+[![CI](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml/badge.svg)](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml)
 
 This is a Node.js library written in TypeScript for usage with the [Prodia AI API](https://docs.prodia.com/reference/getting-started)
 
@@ -20,6 +23,7 @@ First, you need to import the library and set your API key:
 
 ```ts
 import { Prodia } from "prodia-api"
+// js: const Prodia = require("prodia-api").Prodia;
 
 // Your API Key from https://app.prodia.com/
 const prodia = new Prodia(`XxXxX-XxXxX-XxXxX-XxXxX`);
@@ -38,7 +42,7 @@ const generationRequest: CreateGenerationRequest = {
     cfg_scale: 7.5,
     model: ProdiaModel.ANYTHING_V45,
     negative_prompt: `easynegative`,
-    prompt: `A portrait of a cute dog`,
+    prompt: `A portrait of a cute dog`, // The only actual required field, feel free to only send this.
     sampler: ProdiaSampler.DPM_PP_2M_KARRAS,
     seed: -1,
     steps: 32,
@@ -60,6 +64,13 @@ if (imageGenerationJob.status !== JobStatus.SUCCEEDED) {
 }
 
 console.log("Generation completed!", job.imageUrl);
+
+```
+
+
+```ts
+import { Prodia } from "prodia-api"
+// js: const Prodia = require("prodia-api").Prodia;
 
 ```
 
