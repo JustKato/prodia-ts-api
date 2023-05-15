@@ -27,7 +27,7 @@ describe(`Image Generation Tests`, () => {
         console.log(`Got job: ${j.job}`)
         imageGeneration = j;
     
-    }, 5000);
+    }, 30000);
 
     test(`Image Generation Fetch`, async () => {
 
@@ -48,7 +48,7 @@ describe(`Image Generation Tests`, () => {
 
         console.log(`Image has been generated: ${imageGeneration.imageUrl}`)
 
-    }, 5000);
+    }, 30000);
 });
 
 describe(`Image to Image Tests`, () => {
@@ -68,7 +68,7 @@ describe(`Image to Image Tests`, () => {
         console.log(`Got job: ${j.job}`)
         imageGeneration = j;
     
-    }, 5000);
+    }, 30000);
 
     test(`Image to Image Generation Fetch`, async () => {
 
@@ -89,5 +89,32 @@ describe(`Image to Image Tests`, () => {
 
         console.log(`Image to Image has finished: ${imageGeneration.imageUrl}`)
 
-    }, 5000);
+    }, 30000);
 });
+
+describe(`Instant generator tests`, () => {
+
+    test(`Generating an image from a text prompt`, async () => {
+        let j = await prodia.generateText2Image({
+            prompt: `A cute dog`,
+        })
+
+        expect(j.status).toEqual(JobStatus.SUCCEEDED);
+
+        console.log(`Got Image ${j.imageUrl}`)
+
+    }, 30000)
+
+    test(`Generating an image from an image prompt and a text prompt`, async () => {
+        let j = await prodia.generateImage2Image({
+            imageUrl: `https://cdn.discordapp.com/attachments/1044069166329647285/1102512720789635233/cover-0687707558765549.png`,
+            prompt:   `epic realistic,bright sunny day, daylight on mars, mars, outside,bright sky`,
+        })
+
+        expect(j.status).toEqual(JobStatus.SUCCEEDED);
+
+        console.log(`Got Image ${j.imageUrl}`)
+
+    }, 30000)
+
+})
