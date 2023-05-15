@@ -1,5 +1,5 @@
 # Prodia AI Image Generation API
-[![npm version](https://badge.fury.io/js/prodia-api.svg)](https://badge.fury.io/js/prodia-api)
+[![npm version](https://badge.fury.io/js/prodia-api.svg?1)](https://badge.fury.io/js/prodia-api)
 
 [![Tests](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml/badge.svg)](https://github.com/JustKato/prodia-ts-api/actions/workflows/main.yml)
 
