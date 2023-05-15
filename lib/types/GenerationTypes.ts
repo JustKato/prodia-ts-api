@@ -12,7 +12,7 @@ export interface CreateGenerationRequest {
     aspect_ratio?:    ProdiaAspectRatio
 }
 
-export interface CreateGenerationResponse {
+export interface GenerationResponse {
     /**
      * The id of the job that has been created
      */
@@ -34,6 +34,6 @@ export interface CreateGenerationResponse {
     imageUrl: string | undefined,
 }
 
-export async function downloadImageFromResponse( response: CreateGenerationResponse, downloadPath: string ) {
+export async function downloadImageFromResponse( response: GenerationResponse, downloadPath: string ) {
     throw new Error(`Feature not implemented yet`);
 }

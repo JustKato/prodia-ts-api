@@ -1,4 +1,5 @@
-import { CreateGenerationRequest, CreateGenerationResponse } from "./types/GenerationTypes";
+import { CreateGenerationRequest, GenerationResponse } from "./types/GenerationTypes";
+import { ImageToImageRequest } from "./types/ImageToImageTypes";
 
 const PRODIA_BASE_URL = `https://api.prodia.com`;
 
@@ -17,8 +18,8 @@ export class Prodia {
      * Add an image generation request in the queue, you will have to use polling to get the latest status of the job
      * @param generationRequest The generation parameters for the request
      */
-    public createImageGeneration( generationRequest: CreateGenerationRequest ): Promise<CreateGenerationResponse> {
-        return new Promise<CreateGenerationResponse>( async (_r, _e) => {
+    public createImageGeneration( generationRequest: CreateGenerationRequest ): Promise<GenerationResponse> {
+        return new Promise<GenerationResponse>( async (_r, _e) => {
             const response = await fetch(`${PRODIA_BASE_URL}/v1/job`, {
                 method: `POST`,
                 cache: `no-cache`,
@@ -36,10 +37,10 @@ export class Prodia {
             // Parse the response and return it
             const responseJSON = await response.json();
 
-            // TODO: Implement some kind of check to make sure that the response JSON respects the CreateGenerationResponse interface
+            // TODO: Implement some kind of check to make sure that the response JSON respects the GenerationResponse interface
 
             // Return the response JSON
-            return _r(responseJSON as CreateGenerationResponse);
+            return _r(responseJSON as GenerationResponse);
         })
     }
 
@@ -47,8 +48,8 @@ export class Prodia {
      * Check the current status of an image generation job, this will also return the image URL of the generate image
      * @param jobID The id of the job to check on
      */
-    public fetchImageGeneration( jobID: string ): Promise<CreateGenerationResponse> {
-        return new Promise<CreateGenerationResponse>( async (_r, _e) => {
+    public fetchImageGeneration( jobID: string ): Promise<GenerationResponse> {
+        return new Promise<GenerationResponse>( async (_r, _e) => {
             const response = await fetch(`${PRODIA_BASE_URL}/v1/job/${jobID}`, {
                 method: `GET`,
                 cache: `no-cache`,
@@ -65,20 +66,37 @@ export class Prodia {
             // Parse the response and return it
             const responseJSON = await response.json();
 
-            // TODO: Implement some kind of check to make sure that the response JSON respects the CreateGenerationResponse interface
+            // TODO: Implement some kind of check to make sure that the response JSON respects the GenerationResponse interface
 
             // Return the response JSON
-            return _r(responseJSON as CreateGenerationResponse);
+            return _r(responseJSON as GenerationResponse);
         })
     }
 
-    public createImageToImage() {
-        throw new Error(`Not implemented yet`);
-    }
+    public createImageToImage( generationRequest: ImageToImageRequest ): Promise<GenerationResponse> {
+        return new Promise<GenerationResponse>( async (_r, _e) => {
+            const response = await fetch(`${PRODIA_BASE_URL}/v1/transform`, {
+                method: `POST`,
+                cache: `no-cache`,
+                headers: this.getProdiaHeaders(),
+                redirect: `follow`,
+                referrerPolicy: `no-referrer`,
+                body: JSON.stringify(generationRequest),
+            })
 
-    public getImageToImage() {
-        throw new Error(`Not implemented yet`);
-        // TODO: Not implemented yet
+            // Make sure to check response status
+            if ( response.status > 299 || response.status < 200 ) {
+                return _e(new Error(`Api responded with ${response.status} ${response.statusText}`))
+            }
+
+            // Parse the response and return it
+            const responseJSON = await response.json();
+
+            // TODO: Implement some kind of check to make sure that the response JSON respects the GenerationResponse interface
+
+            // Return the response JSON
+            return _r(responseJSON as GenerationResponse);
+        })
     }
 
     // Private Functions
