@@ -115,7 +115,7 @@ export class Prodia {
             let j = await this.createImageGeneration(generationRequest);
 
             // Now we wait for the image to process
-            let safetyWait = 25;
+            let safetyWait = 75;
             while ((j.status == JobStatus.GENERATING || j.status == JobStatus.QUEUED) && --safetyWait > 0 ) {
                 await new Promise((r) => setTimeout(r, 500));
                 j = await this.fetchImageGeneration(j.job);
@@ -134,7 +134,7 @@ export class Prodia {
             let j = await this.createImageToImage(generationRequest);
 
             // Now we wait for the image to process
-            let safetyWait = 25;
+            let safetyWait = 75;
             while ((j.status == JobStatus.GENERATING || j.status == JobStatus.QUEUED) && --safetyWait > 0 ) {
                 await new Promise((r) => setTimeout(r, 500));
                 j = await this.fetchImageGeneration(j.job);
