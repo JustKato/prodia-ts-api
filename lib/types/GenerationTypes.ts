@@ -1,4 +1,6 @@
 import { JobStatus, ProdiaAspectRatio, ProdiaModel, ProdiaSampler } from "./GeneralTypes";
+import fs from "fs";
+
 
 export interface CreateGenerationRequest {
     model?:           ProdiaModel,
@@ -32,8 +34,4 @@ export interface GenerationResponse {
      * The URL of the generated image
      */
     imageUrl: string | undefined,
-}
-
-export async function downloadImageFromResponse( response: GenerationResponse, downloadPath: string ) {
-    throw new Error(`Feature not implemented yet`);
 }

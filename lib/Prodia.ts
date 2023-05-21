@@ -1,6 +1,7 @@
 import { JobStatus } from "./types/GeneralTypes";
 import { CreateGenerationRequest, GenerationResponse } from "./types/GenerationTypes";
 import { ImageToImageRequest } from "./types/ImageToImageTypes";
+import fs from "node:fs";
 
 const PRODIA_BASE_URL = `https://api.prodia.com`;
 
@@ -152,6 +153,21 @@ export class Prodia {
             "X-Prodia-Key": this._apiKey,
             "X-API-LIB":    `npm/prodia-api`
         }
+    }
+
+    // Static Functions
+    public static async downloadImageFromResponse( response: GenerationResponse, downloadPath: string ) {
+
+        // Validate if the response is completed
+        if ( response.status !== JobStatus.SUCCEEDED || response.imageUrl == undefined ) {
+            throw new Error(`The provided API Response is not valid: JobStatus != SUCCEEDED`);
+        }
+    
+        const resp = await fetch(response.imageUrl);
+        const arrayBuffer = await resp.arrayBuffer();
+        const buff = Buffer.from(arrayBuffer);
+
+        fs.writeFileSync(buff, downloadPath);
     }
 
 }

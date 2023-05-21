@@ -115,6 +115,9 @@ describe(`Instant generator tests`, () => {
 
         console.log(`Got Image ${j.imageUrl}`)
 
+        // Download the image as well
+        await Prodia.downloadImageFromResponse( j, "./example.png");
+
     }, 30000)
 
 })
