@@ -167,7 +167,7 @@ export class Prodia {
         const arrayBuffer = await resp.arrayBuffer();
         const buff = Buffer.from(arrayBuffer);
 
-        fs.writeFileSync(buff, downloadPath);
+        fs.writeFileSync(downloadPath, buff);
     }
 
 }
