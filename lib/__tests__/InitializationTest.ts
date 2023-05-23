@@ -68,7 +68,7 @@ describe(`Image to Image Tests`, () => {
         console.log(`Got job: ${j.job}`)
         imageGeneration = j;
     
-    }, 30000);
+    }, 60000);
 
     test(`Image to Image Generation Fetch`, async () => {
 
@@ -79,9 +79,9 @@ describe(`Image to Image Tests`, () => {
         }
 
         // Now we wait for the image to process
-        let safetyWait = 25;
+        let safetyWait = 30;
         while ((imageGeneration.status == JobStatus.GENERATING || imageGeneration.status == JobStatus.QUEUED) && --safetyWait > 0 ) {
-            await new Promise((r) => setTimeout(r, 500));
+            await new Promise((r) => setTimeout(r, 1000));
             imageGeneration = await prodia.fetchImageGeneration(imageGeneration.job);
         }
 
@@ -89,7 +89,7 @@ describe(`Image to Image Tests`, () => {
 
         console.log(`Image to Image has finished: ${imageGeneration.imageUrl}`)
 
-    }, 30000);
+    }, 60000);
 });
 
 describe(`Instant generator tests`, () => {
